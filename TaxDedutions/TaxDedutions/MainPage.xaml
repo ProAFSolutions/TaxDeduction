@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TaxDedutions.MainPage"
+              xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms" BackgroundColor="Black">
+  <ScrollView>
+    <StackLayout Padding="20">
+
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="*" />
+          <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Label Text="{Binding TotalInvoices}" Grid.Row="0" Grid.Column="0" FontSize="35" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" TextColor="White"/>
+        <Label Text="{Binding TotalAmount}" Grid.Row="0" Grid.Column="1" FontSize="35" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" TextColor="Red"/>
+        <Label Text="Invoices" Grid.Row="1" Grid.Column="0" FontSize="25" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" TextColor="White"/>
+        <Label Text="Amount" Grid.Row="1" Grid.Column="1" FontSize="25" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" TextColor="White"/>
+      </Grid>
+
+
+      <StackLayout Orientation="Vertical" HorizontalOptions="Fill">
+        <controls:ImageButton x:Name="addButton" Command="{Binding AddCommand}"
+                                    BackgroundColor="#800080"
+                                    HeightRequest="55"
+                                    ImageHeightRequest="72"
+                                    ImageWidthRequest="72"
+                                    Orientation="ImageToLeft"
+                                    Text="Add Invoice"
+                                    TextColor="#ffffff"
+                                   HorizontalOptions="Fill">
+          <controls:ImageButton.Source>
+            <OnPlatform x:TypeArguments="ImageSource">
+              <OnPlatform.iOS>
+                <FileImageSource File="Add.png" />
+              </OnPlatform.iOS>
+              <OnPlatform.Android>
+                <FileImageSource File="Add.png" />
+              </OnPlatform.Android>
+              <OnPlatform.WinPhone>
+                <FileImageSource File="Images/icon.png" />
+              </OnPlatform.WinPhone>
+            </OnPlatform>
+          </controls:ImageButton.Source>
+        </controls:ImageButton>
+        <controls:ImageButton x:Name="recordsButton" Command="{Binding ListCommand}"
+                                    BackgroundColor="#800080"
+                                    HeightRequest="55"
+                                    ImageHeightRequest="72"
+                                    ImageWidthRequest="72"
+                                    Orientation="ImageToLeft"
+                                    Text="View Records"
+                                    TextColor="#ffffff"
+                                   HorizontalOptions="Fill">
+          <controls:ImageButton.Source>
+            <OnPlatform x:TypeArguments="ImageSource">
+              <OnPlatform.iOS>
+                <FileImageSource File="View.png" />
+              </OnPlatform.iOS>
+              <OnPlatform.Android>
+                <FileImageSource File="View.png" />
+              </OnPlatform.Android>
+              <OnPlatform.WinPhone>
+                <FileImageSource File="Images/icon.png" />
+              </OnPlatform.WinPhone>
+            </OnPlatform>
+          </controls:ImageButton.Source>
+        </controls:ImageButton>
+        <controls:ImageButton x:Name="deductionsButton" Command="{Binding SaveCommand}"
+                                    BackgroundColor="#800080"
+                                    HeightRequest="55"
+                                    ImageHeightRequest="72"
+                                    ImageWidthRequest="72"
+                                    Orientation="ImageToLeft"
+                                    Text="Deductions"
+                                    TextColor="#ffffff"
+                                    HorizontalOptions="Fill">
+          <controls:ImageButton.Source>
+            <OnPlatform x:TypeArguments="ImageSource">
+              <OnPlatform.iOS>
+                <FileImageSource File="Deductions.png" />
+              </OnPlatform.iOS>
+              <OnPlatform.Android>
+                <FileImageSource File="Deductions.png" />
+              </OnPlatform.Android>
+              <OnPlatform.WinPhone>
+                <FileImageSource File="Images/icon.png" />
+              </OnPlatform.WinPhone>
+            </OnPlatform>
+          </controls:ImageButton.Source>
+        </controls:ImageButton>
+      </StackLayout>
+    </StackLayout>
+  </ScrollView>
+
+</ContentPage>

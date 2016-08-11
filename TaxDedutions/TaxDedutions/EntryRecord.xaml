@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TaxDedutions.EntryRecord"
+   xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms">
+  <ContentPage.Content>
+
+    <ScrollView>
+      <StackLayout Padding="20">
+
+        <Label Text="Create Invoice" FontSize="35" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"/>
+
+        <Label Text="Name" FontSize="20"/>
+        <Entry x:Name="Name" Placeholder="Enter Name" Text="{Binding Name}"></Entry>
+        <Label Text="Description" FontSize="20"/>
+        <Entry x:Name="Description" Placeholder="Enter Description"  Text="{Binding Description}"></Entry>
+        <Label Text="Type" FontSize="20"/>
+        <Picker x:Name="PickerType" SelectedIndex="{Binding SelectIndex,Mode=TwoWay}"></Picker>
+        <Label Text="Date" FontSize="20"/>
+        <DatePicker x:Name="Date"></DatePicker>
+
+        <Label Text="Amount" FontSize="20"/>
+        <Entry x:Name="Amount" Placeholder="Enter Amount" Keyboard="Numeric"></Entry>
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+          <Button Text="Take Picture"  BackgroundColor="Blue" TextColor="White" Command="{Binding TakePictureCommand}"/>
+          <Button Text="Select Picture"  BackgroundColor="Blue" TextColor="White" Command="{Binding SelectPictureCommand}"/>
+        </StackLayout>
+
+        <Image x:Name="image" Source="{Binding Image}"></Image>
+        <BoxView Color="Gray" HorizontalOptions="FillAndExpand" HeightRequest="120" IsVisible="{Binding IsVisible}"></BoxView>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+          <!--<Button Text="Fily" HorizontalOptions="FillAndExpand"></Button>-->
+          <controls:ImageButton x:Name="saveButton" Command="{Binding SaveCommand}"
+                                     BackgroundColor="#800080"
+                                     HeightRequest="55"
+                                     ImageHeightRequest="72"
+                                     ImageWidthRequest="72"
+                                     Orientation="ImageToLeft"
+                                     Text="Save Record"
+                                     TextColor="#ffffff"
+                                     HorizontalOptions="FillAndExpand">
+            <controls:ImageButton.Source>
+              <OnPlatform x:TypeArguments="ImageSource">
+                <OnPlatform.iOS>
+                  <FileImageSource File="Save.png" />
+                </OnPlatform.iOS>
+                <OnPlatform.Android>
+                  <FileImageSource File="Save.png" />
+                </OnPlatform.Android>
+                <OnPlatform.WinPhone>
+                  <FileImageSource File="Images/icon.png" />
+                </OnPlatform.WinPhone>
+              </OnPlatform>
+            </controls:ImageButton.Source>
+          </controls:ImageButton>
+
+        </StackLayout>
+
+
+
+      </StackLayout>
+    </ScrollView>
+  </ContentPage.Content>
+</ContentPage>
