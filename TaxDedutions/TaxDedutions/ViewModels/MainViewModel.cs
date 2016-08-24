@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaxDedutions.DB;
 using TaxDedutions.Models;
+using TaxDedutions.Views;
 using Xamarin.Forms;
 using XLabs.Ioc;
 using XLabs.Platform.Device;
@@ -67,7 +68,6 @@ namespace TaxDedutions.ViewModels
 
         #endregion
 
-
         #region Commands
 
         private Command addCommand;
@@ -96,7 +96,7 @@ namespace TaxDedutions.ViewModels
         private async Task RecordList()
         {
             IsBusy = true;
-            await Navigation.PushModalAsync(new RecordList());
+            await Navigation.PushAsync(new RecordList());
 
         }
 

@@ -1,38 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TaxDedutions.RecordList"
-   xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms">
-  <ContentPage.Content>
-      
-    <ScrollView>
-      <StackLayout Padding="20">
-        <Label Text="Invoices" FontSize="35" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"/>
+             x:Class="TaxDedutions.Views.RecordList">
 
-        <ListView x:Name="listView" ItemSelected="OnItemSelected" ItemsSource="{Binding Records}">
-          <ListView.ItemTemplate>
-            <DataTemplate>
+  <StackLayout>
+    <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"></ActivityIndicator>
 
-              <ImageCell Text="{Binding Name}" Detail="{Binding Description}" ImageSource="{Binding Image}">
-                
-              </ImageCell>
+    <ListView x:Name="listView" ItemsSource="{Binding Records}" ItemSelected="OnItemSelected" RowHeight="100">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout Padding="15,0,0,0" HorizontalOptions="StartAndExpand" Orientation="Horizontal" BackgroundColor="#FFFFFF" Spacing="15" VerticalOptions="FillAndExpand">
+              <Image Source="{Binding Image}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Image>
               
-              <!--<ViewCell>
-                <StackLayout Padding="20,0,0,0" HorizontalOptions="StartAndExpand" Orientation="Horizontal">
-                  <StackLayout Orientation="Vertical">
-                   
-                  </StackLayout>
-                  
-                  
-                  <Label Text="{Binding Name}" FontSize="18" VerticalTextAlignment="Center" />
-                  --><!--<Image Source="icon.png" />--><!--
-                </StackLayout>
-              </ViewCell>-->
-            </DataTemplate>
-          </ListView.ItemTemplate>
-        </ListView>
-        
-        </StackLayout>
-    </ScrollView>
-  </ContentPage.Content>
+              <StackLayout Padding="10,15,0,0" Orientation="Vertical">
+                <Label Text="{Binding Name}" FontSize="20" VerticalTextAlignment="Center" TextColor="#000000"/>
+                <Label Text="{Binding Description}" FontSize="16" VerticalTextAlignment="Center" TextColor="#000000"/>
+              </StackLayout>
+
+
+              <Image Source="Next.png" HorizontalOptions="EndAndExpand"/>
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </StackLayout>
+
+
 </ContentPage>

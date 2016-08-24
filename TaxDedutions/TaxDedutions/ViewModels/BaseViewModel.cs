@@ -16,6 +16,7 @@ namespace TaxDedutions.ViewModels
         //    get { return isChanged; }
         //}
 
+        public ContentPage Page { get; set; }
         public INavigation Navigation { get; set; }
         public bool IsInitialized { get; set; }
 

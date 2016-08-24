@@ -28,17 +28,7 @@ namespace TaxDedutions.ViewModels
 
         public RecordListViewModel()
         {
-            db = new RecordDatabase();
-            Records = db.GetRecords().ToList().Select(
-                x => new RecordItemList()
-                {
-                    Name = x.Name + " (Amount: $" + x.Amount.ToString()+")",
-                    Description = x.Description,
-                    Image = String64toImage(x.Image),
-                    ID = x.ID
-                    
-                }
-                ).ToList();
+            GetRecords();
         }
 
         #endregion
@@ -70,6 +60,20 @@ namespace TaxDedutions.ViewModels
               () => new MemoryStream(Convert.FromBase64String(value)));
         }
 
+        public void GetRecords()
+        {
+            db = new RecordDatabase();
+            Records = db.GetRecords().ToList().Select(
+                x => new RecordItemList()
+                {
+                    Name = x.Name + " (Amount: $" + x.Amount.ToString() + ")",
+                    Description = x.Description,
+                    Image = String64toImage(x.Image),
+                    ID = x.ID
+
+                }
+                ).ToList();
+        }
         #endregion
 
     }

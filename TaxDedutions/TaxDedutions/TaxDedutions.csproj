@@ -37,11 +37,12 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="DB\RecordDatabase.cs" />
-    <Compile Include="EntryRecord.xaml.cs">
+    <Compile Include="Services\IImageResizer.cs" />
+    <Compile Include="Views\EntryRecord.xaml.cs">
       <DependentUpon>EntryRecord.xaml</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\ISQLite.cs" />
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Record.cs" />
@@ -116,13 +117,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="EntryRecord.xaml">
+    <EmbeddedResource Include="Views\EntryRecord.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MainPage.xaml">
+    <EmbeddedResource Include="Views\MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

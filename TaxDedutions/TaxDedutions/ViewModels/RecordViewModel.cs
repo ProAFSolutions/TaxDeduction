@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExifLib;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaxDedutions.DB;
 using TaxDedutions.Models;
+using TaxDedutions.Services;
 using Xamarin.Forms;
 using XLabs.Ioc;
 using XLabs.Platform.Device;
@@ -66,7 +68,6 @@ namespace TaxDedutions.ViewModels
 
         public EntryRecord EntryRecordPage { get; set; }
 
-        public INavigation Navigation { get; set; }
         public string Name
         {
             get { return name; }
@@ -178,14 +179,8 @@ namespace TaxDedutions.ViewModels
         private async Task SelectPicture()
         {
             IsBusy = true;
-
-
             ImageSource imageSource;
             IMediaPicker mediaPicker;
-            //  Image img;
-
-            // img = new Image() { HeightRequest = 300, WidthRequest = 300, BackgroundColor = Color.FromHex("#D6D6D2"), Aspect = Aspect.AspectFit };
-
             var device = Resolver.Resolve<IDevice>();
             mediaPicker = DependencyService.Get<IMediaPicker>() ?? device.MediaPicker;
 
@@ -200,6 +195,8 @@ namespace TaxDedutions.ViewModels
                 Image = imageSource;
                 HasImage = true;
 
+
+                //Convert Base 64
                 using (var memoryStream = new MemoryStream())
                 {
                     mediaFile.Source.CopyTo(memoryStream);
@@ -239,36 +236,14 @@ namespace TaxDedutions.ViewModels
 
             ImageSource imageSource;
             IMediaPicker mediaPicker;
-            //  Image img;
-
-            // img = new Image() { HeightRequest = 300, WidthRequest = 300, BackgroundColor = Color.FromHex("#D6D6D2"), Aspect = Aspect.AspectFit };
 
             var device = Resolver.Resolve<IDevice>();
             mediaPicker = DependencyService.Get<IMediaPicker>() ?? device.MediaPicker;
 
             try
             {
-                //var mediaFile = await mediaPicker.TakePhotoAsync(new CameraMediaStorageOptions
-                //{
-                //    DefaultCamera = CameraDevice.Front,
-                //    MaxPixelDimension = 400
-                //});
-                //imageSource = ImageSource.FromStream(() => mediaFile.Source);
-                //Image = imageSource;
-
-
-                //using (var memoryStream = new MemoryStream())
-                //{
-                //    mediaFile.Source.CopyTo(memoryStream);
-                //    byte[] imageBytes = memoryStream.ToArray();
-
-                //    imageBase64 = Convert.ToBase64String(imageBytes);
-
-                //}
 
                 IsBusy = false;
-
-                //  Navigation.PopAsync();
 
                 var media = mediaPicker.TakePhotoAsync(new CameraMediaStorageOptions
                 {
@@ -281,19 +256,68 @@ namespace TaxDedutions.ViewModels
                     }
                     else if (t.IsCanceled)
                     {
-                       // this.status = "Canceled";
+                        // this.status = "Canceled";
                     }
                     else
                     {
                         var mediaFile = t.Result;
-                        imageSource = ImageSource.FromStream(() => mediaFile.Source);
-                        Image = imageSource;
-                        HasImage = true;
+                        //imageSource = ImageSource.FromStream(() => mediaFile.Source);
+                        //Image = imageSource;
+                        // HasImage = true;
+
                         //    return mediaFile;
+                        //Compress
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            mediaFile.Source.CopyTo(memoryStream);
+                            memoryStream.Position = 0;
+                            var ImageBytes = memoryStream.ToArray();
+
+                            var picInfo = ExifReader.ReadJpeg(memoryStream);
+                            var resize = DependencyService.Get<IImageResizer>();
+                            if (picInfo.Width > 600 && picInfo.Height > 600)
+                            {
+                                var values = MaxResizeImage(picInfo.Width, picInfo.Height, 600, 700);
+                                ImageBytes = resize.ResizeImage(ImageBytes, values[0], values[1]);
+                            }
+
+                            //Rotate
+                            if (Device.OS == TargetPlatform.Android)
+                            {
+                                using (Stream streamPic = mediaFile.Source)
+                                {
+                                    // var picInfo = ExifReader.ReadJpeg(streamPic);
+                                    ExifOrientation orientation = picInfo.Orientation;
+
+                                    switch (orientation)
+                                    {
+                                        case ExifOrientation.TopRight:
+                                            // ImageVisual.RotateTo(90.0);
+                                            ImageBytes = resize.RotateImage(ImageBytes, 90);
+                                            break;
+                                        case ExifOrientation.BottomRight:
+                                            // ImageVisual.RotateTo(180.0);
+                                            ImageBytes = resize.RotateImage(ImageBytes, 180);
+                                            break;
+                                        case ExifOrientation.BottomLeft:
+                                            // ImageVisual.RotateTo(270.0);
+                                            ImageBytes = resize.RotateImage(ImageBytes, 270);
+                                            break;
+                                    }
+
+                                }
+                            }
+
+                            imageSource = ImageSource.FromStream(() => new MemoryStream(ImageBytes));
+                            Image = imageSource;
+                            HasImage = true;
+                            //Convert Base 64
+                            ImageBase64 = Convert.ToBase64String(ImageBytes);
+                        }
                     }
 
-                    //  return null;
-                }, _scheduler);
+                        //  return null;
+                    }, _scheduler);
 
 
             }
@@ -336,7 +360,7 @@ namespace TaxDedutions.ViewModels
 
             db.AddRecord(record);
 
-            EntryRecordPage.DisplayAlert("New Invoice", "Saved", "OK");
+            await EntryRecordPage.DisplayAlert("New Invoice", "Saved", "OK");
 
             await Navigation.PushModalAsync(new MainPage());
 
@@ -363,6 +387,23 @@ namespace TaxDedutions.ViewModels
             }
 
             return true;
+        }
+
+        public static List<float> MaxResizeImage(float Width, float Height, float maxWidth, float maxHeight)
+        {
+            List<float> result = new List<float>();
+            result.Add(Width);
+            result.Add(Height);
+
+            var maxResizeFactor = Math.Min(maxWidth / Width, maxHeight / Height);
+            if (maxResizeFactor > 1) return result;
+            var width = maxResizeFactor * Width;
+            var height = maxResizeFactor * Height;
+
+            result[0] = width;
+            result[1] = height;
+
+            return result;
         }
 
         #endregion
