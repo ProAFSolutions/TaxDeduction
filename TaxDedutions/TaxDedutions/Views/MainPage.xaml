@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TaxDedutions.MainPage"
-              xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms" BackgroundColor="Black">
+              xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms" BackgroundImage="background.png">
   <ScrollView>
     <StackLayout Padding="20">
 
@@ -22,9 +22,9 @@
       </Grid>
 
 
-      <StackLayout Orientation="Vertical" HorizontalOptions="Fill">
+      <!--<StackLayout Orientation="Vertical" HorizontalOptions="Fill">
         <controls:ImageButton x:Name="addButton" Command="{Binding AddCommand}"
-                                    BackgroundColor="#800080"
+                                    BackgroundColor="#404040"
                                     HeightRequest="55"
                                     ImageHeightRequest="72"
                                     ImageWidthRequest="72"
@@ -47,7 +47,7 @@
           </controls:ImageButton.Source>
         </controls:ImageButton>
         <controls:ImageButton x:Name="recordsButton" Command="{Binding ListCommand}"
-                                    BackgroundColor="#800080"
+                                    BackgroundColor="#404040"
                                     HeightRequest="55"
                                     ImageHeightRequest="72"
                                     ImageWidthRequest="72"
@@ -70,7 +70,7 @@
           </controls:ImageButton.Source>
         </controls:ImageButton>
         <controls:ImageButton x:Name="deductionsButton" Command="{Binding SaveCommand}"
-                                    BackgroundColor="#800080"
+                                    BackgroundColor="#404040"
                                     HeightRequest="55"
                                     ImageHeightRequest="72"
                                     ImageWidthRequest="72"
@@ -92,7 +92,7 @@
             </OnPlatform>
           </controls:ImageButton.Source>
         </controls:ImageButton>
-      </StackLayout>
+      </StackLayout>-->
     </StackLayout>
   </ScrollView>
 
