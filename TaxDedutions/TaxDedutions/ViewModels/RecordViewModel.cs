@@ -360,9 +360,11 @@ namespace TaxDedutions.ViewModels
 
             db.AddRecord(record);
 
-            await EntryRecordPage.DisplayAlert("New Invoice", "Saved", "OK");
+            //await EntryRecordPage.DisplayAlert("New Invoice", "Saved", "OK");
 
-            await Navigation.PushModalAsync(new MainPage());
+            await this.Navigation.PopAsync();
+
+            return;
 
         }
 

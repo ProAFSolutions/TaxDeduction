@@ -18,7 +18,9 @@ namespace TaxDedutions.Views
             menuPage.Menu.ItemSelected += (sender, e) => NavigateTo(e.SelectedItem as MenuItem);
 
             Master = menuPage;
-            Detail = new NavigationPage(new MainPage());
+            NavigationPage navigation = new NavigationPage(new MainPage());
+            navigation.BarBackgroundColor = Color.Transparent;
+            Detail = navigation;
         }
 
         void NavigateTo(MenuItem menu)
@@ -28,7 +30,9 @@ namespace TaxDedutions.Views
 
             Page displayPage = (Page)Activator.CreateInstance(menu.TargetType);
 
-            Detail = new NavigationPage(displayPage);
+            NavigationPage navigation = new NavigationPage(displayPage);
+            navigation.BarBackgroundColor = Color.Transparent;
+            Detail = navigation;
 
             menuPage.Menu.SelectedItem = null;
             IsPresented = false;

@@ -81,7 +81,12 @@ namespace TaxDedutions.ViewModels
         private async Task AddRecord()
         {
             IsBusy = true;
-            await Navigation.PushModalAsync(new EntryRecord());
+
+            //NavigationPage navigation = new NavigationPage(new EntryRecord());
+            //navigation.BarBackgroundColor = Color.Transparent;
+            //Detail = navigation;
+
+            //await Navigation.PushModalAsync(new EntryRecord());
            
         }
 

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TaxDedutions.Views.RecordList" BackgroundImage="background.png">
+             x:Class="TaxDedutions.Views.RecordList" BackgroundImage="background.png" Title=" My Invoices">
 
   <StackLayout>
     <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"></ActivityIndicator>
@@ -14,7 +14,7 @@
               <Image Source="{Binding Image}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Image>
               
               <StackLayout Padding="10,15,0,0" Orientation="Vertical">
-                <Label Text="{Binding Name}" FontSize="20" VerticalTextAlignment="Center" TextColor="#000000"/>
+                <Label Text="{Binding Concat}" FontSize="20" VerticalTextAlignment="Center" TextColor="#000000"/>
                 <Label Text="{Binding Description}" FontSize="16" VerticalTextAlignment="Center" TextColor="#000000"/>
               </StackLayout>
 

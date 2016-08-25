@@ -38,6 +38,10 @@
     <Compile Include="App.cs" />
     <Compile Include="DB\RecordDatabase.cs" />
     <Compile Include="Services\IImageResizer.cs" />
+    <Compile Include="ViewModels\DetailViewModel.cs" />
+    <Compile Include="Views\DetailRecord.xaml.cs">
+      <DependentUpon>DetailRecord.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\EntryRecord.xaml.cs">
       <DependentUpon>EntryRecord.xaml</DependentUpon>
     </Compile>
@@ -130,6 +134,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\RecordList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DetailRecord.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

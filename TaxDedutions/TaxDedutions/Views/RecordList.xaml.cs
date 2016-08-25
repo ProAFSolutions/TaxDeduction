@@ -21,7 +21,17 @@ namespace TaxDedutions.Views
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-           
+            var record = e.SelectedItem as RecordItemList;
+
+            var detail = new DetailRecord(record);
+            await Navigation.PushAsync(detail);
         }
+
+        protected override void OnAppearing()
+        {
+            if (model != null)
+                model.GetRecords();
+        }
+
     }
 }

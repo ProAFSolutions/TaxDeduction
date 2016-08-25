@@ -4,9 +4,34 @@
              x:Class="TaxDedutions.MainPage"
               xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms" BackgroundImage="background.png">
   <ScrollView>
-    <StackLayout Padding="20">
+    <StackLayout HorizontalOptions="FillAndExpand">
+      
+       <controls:ImageButton x:Name="addInvoiceButton" Command="{Binding AddCommand}"
+                                     BackgroundColor="#404040"
+                                     HeightRequest="55"
+                                     ImageHeightRequest="72"
+                                     ImageWidthRequest="72"
+                                     Orientation="ImageToLeft"
+                                     Text=" New Invoice"
+                                     TextColor="#ffffff"
+                                     HorizontalOptions="FillAndExpand">
+            <controls:ImageButton.Source>
+              <OnPlatform x:TypeArguments="ImageSource">
+                <OnPlatform.iOS>
+                  <FileImageSource File="Faster.png" />
+                </OnPlatform.iOS>
+                <OnPlatform.Android>
+                  <FileImageSource File="Faster.png" />
+                </OnPlatform.Android>
+                <OnPlatform.WinPhone>
+                  <FileImageSource File="Images/Faster.png" />
+                </OnPlatform.WinPhone>
+              </OnPlatform>
+            </controls:ImageButton.Source>
+          </controls:ImageButton>
 
-      <Grid>
+
+      <Grid Padding="20">
         <Grid.RowDefinitions>
           <RowDefinition Height="*" />
           <RowDefinition Height="*" />
@@ -21,7 +46,7 @@
         <Label Text="Amount" Grid.Row="1" Grid.Column="1" FontSize="25" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" TextColor="White"/>
       </Grid>
 
-
+     
       <!--<StackLayout Orientation="Vertical" HorizontalOptions="Fill">
         <controls:ImageButton x:Name="addButton" Command="{Binding AddCommand}"
                                     BackgroundColor="#404040"

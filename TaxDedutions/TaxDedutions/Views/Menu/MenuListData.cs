@@ -12,6 +12,13 @@ namespace TaxDedutions.Views
         {
             this.Add(new MenuItem()
             {
+                Title = " ",
+                //   IconSource = "MyRoutes.png",
+                // TargetType = typeof(EntryRecord)
+            });
+
+            this.Add(new MenuItem()
+            {
                 Title = "MAIN",
                 IconSource = "Main.png",
                 TargetType = typeof(MainPage)
@@ -26,22 +33,22 @@ namespace TaxDedutions.Views
 
             this.Add(new MenuItem()
             {
-                Title = "VIEW RECORDS",
-              //  IconSource = "leads.png",
+                Title = "VIEW INVOICES",
+                IconSource = "List.png",
                 TargetType = typeof(RecordList)
             });
 
             this.Add(new MenuItem()
             {
                 Title = "EXPORT",
-               // IconSource = "accounts.png",
+                IconSource = "Export.png",
                // TargetType = typeof(AccountsPage)
             });
 
             this.Add(new MenuItem()
             {
                 Title = "DEDUCTIONS",
-              //  IconSource = "opportunities.png",
+                IconSource = "Info.png",
                // TargetType = typeof(OpportunitiesPage)
             });
         }

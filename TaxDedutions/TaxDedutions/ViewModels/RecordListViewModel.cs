@@ -66,10 +66,14 @@ namespace TaxDedutions.ViewModels
             Records = db.GetRecords().ToList().Select(
                 x => new RecordItemList()
                 {
-                    Name = x.Name + " (Amount: $" + x.Amount.ToString() + ")",
+                    Name = x.Name,
+                    Concat = x.Name + " (Amount: $" + x.Amount.ToString() + ")",
                     Description = x.Description,
                     Image = String64toImage(x.Image),
-                    ID = x.ID
+                    ID = x.ID,
+                    Date = x.Date,
+                    Amount = x.Amount,
+                    Type = x.Type
 
                 }
                 ).ToList();
@@ -89,6 +93,8 @@ namespace TaxDedutions.ViewModels
         public string Type { get; set; }
 
         public string Description { get; set; }
+
+        public string Concat { get; set; }
         public RecordItemList()
         {
 

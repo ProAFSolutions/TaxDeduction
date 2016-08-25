@@ -8,16 +8,20 @@ using Xamarin.Forms;
 
 namespace TaxDedutions
 {
-    public partial class MainPage : ContentPage
+    public partial class DetailRecord : ContentPage
     {
-        MainViewModel model;
-        public MainPage()
+        DetailViewModel model;
+
+        
+
+        public DetailRecord(RecordItemList record)
         {
             InitializeComponent();
-            model = new MainViewModel();
+            model = new DetailViewModel(record);
             model.Navigation = Navigation;
             model.Page = this;
             this.BindingContext = model;
+
         }
     }
 }

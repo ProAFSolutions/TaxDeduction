@@ -16,7 +16,8 @@ namespace TaxDedutions.Views
             ItemsSource = data;
             VerticalOptions = LayoutOptions.FillAndExpand;
             BackgroundColor = Color.Transparent;
-            SeparatorVisibility = SeparatorVisibility.None;
+            SeparatorVisibility = SeparatorVisibility.Default;
+            SeparatorColor = Color.Black;
 
             var cell = new DataTemplate(typeof(MenuCell));
             cell.SetBinding(MenuCell.TextProperty, "Title");
