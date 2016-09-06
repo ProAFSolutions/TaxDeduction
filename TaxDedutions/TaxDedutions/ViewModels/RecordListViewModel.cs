@@ -21,13 +21,15 @@ namespace TaxDedutions.ViewModels
         private readonly TaskScheduler _scheduler = TaskScheduler.FromCurrentSynchronizationContext();
         private RecordDatabase db;
         private List<RecordItemList> records;
-
+        private int selectIndex;
+        private int selectIndexType;
         #endregion
 
         #region Constructors
 
         public RecordListViewModel()
         {
+            IsBusy = true;
             GetRecords();
         }
 
@@ -47,6 +49,29 @@ namespace TaxDedutions.ViewModels
                 OnPropertyChanged("Records");
             }
         }
+
+        public int SelectIndexYear
+        {
+            get { return selectIndex; }
+            set
+            {
+                selectIndex = value;
+                OnPropertyChanged("SelectIndexYear");
+            }
+        }
+
+        public int SelectIndexType
+        {
+            get { return selectIndexType; }
+            set
+            {
+                selectIndexType = value;
+                OnPropertyChanged("SelectIndexType");
+            }
+        }
+
+
+        
 
         #endregion
 
@@ -73,10 +98,21 @@ namespace TaxDedutions.ViewModels
                     ID = x.ID,
                     Date = x.Date,
                     Amount = x.Amount,
-                    Type = x.Type
+                    Type = x.Type,
+                    HasImage = x.HasImage
 
                 }
                 ).ToList();
+
+            for (int i = 0; i < Records.Count(); i++)
+            {
+                Records[i].Number = (i + 1).ToString();
+                if (Records[i].Number.Length == 1)
+                    Records[i].Number = Records[i].Number + " ";
+            }
+
+            IsBusy = false;
+
         }
         #endregion
 
@@ -95,6 +131,8 @@ namespace TaxDedutions.ViewModels
         public string Description { get; set; }
 
         public string Concat { get; set; }
+
+        public string Number { get; set; }
         public RecordItemList()
         {
 

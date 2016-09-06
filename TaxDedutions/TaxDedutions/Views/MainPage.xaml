@@ -4,31 +4,33 @@
              x:Class="TaxDedutions.MainPage"
               xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms" BackgroundImage="background.png">
   <ScrollView>
-    <StackLayout HorizontalOptions="FillAndExpand">
-      
-       <controls:ImageButton x:Name="addInvoiceButton" Command="{Binding AddCommand}"
-                                     BackgroundColor="#404040"
-                                     HeightRequest="55"
-                                     ImageHeightRequest="72"
-                                     ImageWidthRequest="72"
-                                     Orientation="ImageToLeft"
-                                     Text=" New Invoice"
-                                     TextColor="#ffffff"
-                                     HorizontalOptions="FillAndExpand">
-            <controls:ImageButton.Source>
-              <OnPlatform x:TypeArguments="ImageSource">
-                <OnPlatform.iOS>
-                  <FileImageSource File="Faster.png" />
-                </OnPlatform.iOS>
-                <OnPlatform.Android>
-                  <FileImageSource File="Faster.png" />
-                </OnPlatform.Android>
-                <OnPlatform.WinPhone>
-                  <FileImageSource File="Images/Faster.png" />
-                </OnPlatform.WinPhone>
-              </OnPlatform>
-            </controls:ImageButton.Source>
-          </controls:ImageButton>
+    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+      <StackLayout Padding="5">
+        <controls:ImageButton x:Name="addInvoiceButton" Command="{Binding AddCommand}"
+                                    BackgroundColor="#404040"
+                                    HeightRequest="55"
+                                    ImageHeightRequest="72"
+                                    ImageWidthRequest="72"
+                                    Orientation="ImageToLeft"
+                                    Text=" New Invoice"
+                                    TextColor="#ffffff"
+                                     HorizontalOptions="CenterAndExpand">
+          <controls:ImageButton.Source>
+            <OnPlatform x:TypeArguments="ImageSource">
+              <OnPlatform.iOS>
+                <FileImageSource File="Faster.png" />
+              </OnPlatform.iOS>
+              <OnPlatform.Android>
+                <FileImageSource File="Faster.png" />
+              </OnPlatform.Android>
+              <OnPlatform.WinPhone>
+                <FileImageSource File="Images/Faster.png" />
+              </OnPlatform.WinPhone>
+            </OnPlatform>
+          </controls:ImageButton.Source>
+        </controls:ImageButton>
+      </StackLayout>
+     
 
 
       <Grid Padding="20">
@@ -40,13 +42,34 @@
           <ColumnDefinition Width="*" />
           <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Label Text="{Binding TotalInvoices}" Grid.Row="0" Grid.Column="0" FontSize="35" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" TextColor="White"/>
-        <Label Text="{Binding TotalAmount}" Grid.Row="0" Grid.Column="1" FontSize="35" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" TextColor="Red"/>
+        <Label Text="{Binding TotalInvoices}" Grid.Row="0"  Grid.Column="0" FontSize="30" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" TextColor="White"/>
+        <Label Text="{Binding TotalAmount}" Grid.Row="0" Grid.Column="1" FontSize="30" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" TextColor="#404040"/>
         <Label Text="Invoices" Grid.Row="1" Grid.Column="0" FontSize="25" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" TextColor="White"/>
         <Label Text="Amount" Grid.Row="1" Grid.Column="1" FontSize="25" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" TextColor="White"/>
       </Grid>
 
-     
+      <ScrollView IsVisible="{Binding IsVisibleGraph1}">
+      <StackLayout HorizontalOptions="FillAndExpand">
+        <Label Text="Types/Expenses Total" FontSize="16" FontAttributes="Bold" TextColor="White"/>
+        <ListView x:Name="listView" ItemsSource="{Binding Graph1}" RowHeight="80">
+          <ListView.ItemTemplate>
+            <DataTemplate>
+              <ViewCell>
+                <StackLayout Padding="15,0,0,0" HorizontalOptions="StartAndExpand" Orientation="Horizontal" BackgroundColor="White" Spacing="10" VerticalOptions="FillAndExpand">
+                  <!--<Image Source="{Binding Image}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Image>-->
+                  <!--<Label Text="{Binding Number}" Font="Bold" FontSize="40" VerticalTextAlignment="Center" TextColor="#6766DD"/>-->
+                  <StackLayout Padding="10,15,0,0" Orientation="Vertical">
+                    <Label Text="{Binding Name}" FontSize="20" VerticalTextAlignment="Center" TextColor="#404040"/>
+                    <Label Text="{Binding Expense}" FontSize="16" VerticalTextAlignment="Center" TextColor="#404040"/>
+                  </StackLayout>
+                </StackLayout>
+              </ViewCell>
+            </DataTemplate>
+          </ListView.ItemTemplate>
+        </ListView>
+      </StackLayout>
+      </ScrollView>
+      
       <!--<StackLayout Orientation="Vertical" HorizontalOptions="Fill">
         <controls:ImageButton x:Name="addButton" Command="{Binding AddCommand}"
                                     BackgroundColor="#404040"

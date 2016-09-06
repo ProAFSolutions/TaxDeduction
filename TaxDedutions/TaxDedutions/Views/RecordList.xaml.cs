@@ -17,6 +17,18 @@ namespace TaxDedutions.Views
             model = new RecordListViewModel();
             model.Navigation = Navigation;
             this.BindingContext = model;
+
+            this.PickerYear.Items.Add("2016");
+            this.PickerYear.Items.Add("2017");
+            model.SelectIndexYear = 0;
+
+            for (int i = 0; i < Constants.Deductions.Count(); i++)
+            {
+                this.PickerYear.Items.Add(Constants.Deductions.ElementAt(i).Key);
+            }
+            model.SelectIndexType = 0;
+
+
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)

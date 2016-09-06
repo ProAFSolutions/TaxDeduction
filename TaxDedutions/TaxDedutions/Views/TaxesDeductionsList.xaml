@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TaxDedutions.Views.TaxesDeductionsList" BackgroundImage="background.png" Title=" Itemized Deductions">
+
+  <StackLayout>
+    <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"></ActivityIndicator>
+
+    <ListView x:Name="listView" ItemsSource="{Binding Deductions}" ItemSelected="OnItemSelected" RowHeight="100">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout Padding="15,0,0,0" HorizontalOptions="StartAndExpand" Orientation="Horizontal" BackgroundColor="#FFFFFF" Spacing="15" VerticalOptions="FillAndExpand">
+              <Image Source="{Binding Image}"></Image>
+              
+              <StackLayout Padding="10,15,0,0" Orientation="Vertical">
+                <Label Text="{Binding Name}" FontSize="20" VerticalTextAlignment="Center" TextColor="#000000"/>
+              </StackLayout>
+
+
+              <Image Source="Next.png" HorizontalOptions="EndAndExpand"/>
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </StackLayout>
+
+
+</ContentPage>

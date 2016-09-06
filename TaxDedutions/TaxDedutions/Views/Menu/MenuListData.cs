@@ -26,7 +26,7 @@ namespace TaxDedutions.Views
 
             this.Add(new MenuItem()
             {
-                Title = "ADD INVOICE",
+                Title = "ADD INVOICES",
                 IconSource = "Invoice.png",
                 TargetType = typeof(EntryRecord)
             });
@@ -49,7 +49,7 @@ namespace TaxDedutions.Views
             {
                 Title = "DEDUCTIONS",
                 IconSource = "Info.png",
-               // TargetType = typeof(OpportunitiesPage)
+                TargetType = typeof(TaxesDeductionsList)
             });
         }
     }

@@ -7,7 +7,7 @@
 
     <ScrollView>
       <StackLayout Padding="20">
-
+        
         <!--<Label Text="" FontSize="35" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" TextColor="White"/>-->
 
         <Label Text="Name" FontSize="20" TextColor="White"/>
@@ -25,7 +25,7 @@
         <Label Text="Amount" FontSize="20" TextColor="White"/>
         <Entry  Text="{Binding Record.Amount}" IsEnabled="False">></Entry>
 
-        <Image x:Name="image" Source="{Binding Record.Image}"></Image>
+        <Image x:Name="image" Source="{Binding Record.Image}" IsVisible="{Binding Record.HasImage}"></Image>
         <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
           <!--<Button Text="Fily" HorizontalOptions="FillAndExpand"></Button>-->
           <controls:ImageButton x:Name="saveButton" Command="{Binding RemoveCommand}"

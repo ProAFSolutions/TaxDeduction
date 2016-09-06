@@ -19,5 +19,11 @@ namespace TaxDedutions
             model.Page = this;
             this.BindingContext = model;
         }
+
+        protected override void OnAppearing()
+        {
+            model.LoadData();
+        }
     }
+
 }

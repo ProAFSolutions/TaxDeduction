@@ -41,23 +41,25 @@ namespace TaxDedutions.ViewModels
 
         public RecordViewModel()
         {
-           Deductions = new Dictionary<string, Color>
-        {
-            { "Uncategorized", Color.Red },
-            { "Medical and Dental Expenses", Color.Aqua },
-            { "Deductible Taxes", Color.Blue },
-            { "Home Mortgage Points", Color.Gray },
-            { "Interest Expense", Color.Lime },
-            { "Charitable Contributions", Color.Navy },
-            { "Miscellaneous Expenses", Color.Purple },
-            { "Business Use of Home", Color.Silver },
-            { "Business Use of Car", Color.White },
-            { "Business Travel Expenses", Color.Yellow },
-            { "Business Entertainment Expenses", Color.Green },
-            { "Work-Related Education Expenses", Color.Pink },
-            { "Employee Business Expenses", Color.Silver },
-            { "Casualty, Disaster, and Theft Losses", Color.Teal }
-        };
+            //   Deductions = new Dictionary<string, Color>
+            //{
+            //    { "Uncategorized", Color.Red },
+            //    { "Medical and Dental Expenses", Color.Aqua },
+            //    { "Deductible Taxes", Color.Blue },
+            //    { "Home Mortgage Points", Color.Gray },
+            //    { "Interest Expense", Color.Lime },
+            //    { "Charitable Contributions", Color.Navy },
+            //    { "Miscellaneous Expenses", Color.Purple },
+            //    { "Business Use of Home", Color.Silver },
+            //    { "Business Use of Car", Color.White },
+            //    { "Business Travel Expenses", Color.Yellow },
+            //    { "Business Entertainment Expenses", Color.Green },
+            //    { "Work-Related Education Expenses", Color.Pink },
+            //    { "Employee Business Expenses", Color.Silver },
+            //    { "Casualty, Disaster, and Theft Losses", Color.Teal }
+            //};
+
+            Deductions = Constants.Deductions;
 
             db = new RecordDatabase();
         }
@@ -360,10 +362,22 @@ namespace TaxDedutions.ViewModels
 
             db.AddRecord(record);
 
-            //await EntryRecordPage.DisplayAlert("New Invoice", "Saved", "OK");
+            await EntryRecordPage.DisplayAlert("Invoice", "The new invoice was saved.", "OK");
 
-            await this.Navigation.PopAsync();
+            //Clean
+            Amount = null;
+            Description = "";
+            HasImage = false;
+            ImageBase64 = null;
+            Name = null;
+            Type = null;
+            Image = null;
+            SelectIndex = 0;
+            OnPropertyChanged("IsVisible");
 
+
+            await Navigation.PopAsync();
+            IsBusy = false;
             return;
 
         }

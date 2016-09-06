@@ -36,9 +36,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="DB\RecordDatabase.cs" />
     <Compile Include="Services\IImageResizer.cs" />
+    <Compile Include="ViewModels\DeductionsExpensesListViewModel.cs" />
     <Compile Include="ViewModels\DetailViewModel.cs" />
+    <Compile Include="ViewModels\TaxesDeductionsViewModel.cs" />
     <Compile Include="Views\DetailRecord.xaml.cs">
       <DependentUpon>DetailRecord.xaml</DependentUpon>
     </Compile>
@@ -60,6 +63,9 @@
     <Compile Include="Views\Menu\MenuListData.cs" />
     <Compile Include="Views\Menu\MenuListView.cs" />
     <Compile Include="Views\Menu\MenuPage.cs" />
+    <Compile Include="Views\TaxesDeductionsList.xaml.cs">
+      <DependentUpon>TaxesDeductionsList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RecordList.xaml.cs">
       <DependentUpon>RecordList.xaml</DependentUpon>
     </Compile>
@@ -140,6 +146,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\DetailRecord.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\TaxesDeductionsList.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

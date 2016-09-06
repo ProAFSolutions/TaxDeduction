@@ -1,17 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
              x:Class="TaxDedutions.Views.RecordList" BackgroundImage="background.png" Title=" My Invoices">
 
   <StackLayout>
     <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"></ActivityIndicator>
+
+    <StackLayout HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
+      <Label Text="Filters:" Font="Bold" FontSize="16" TextColor="White"/>
+      <StackLayout Orientation="Horizontal">
+        <controls:CheckBox CheckedText="by Date" UncheckedText="by Date"></controls:CheckBox>
+        <Picker x:Name="PickerYear" SelectedIndex="{Binding SelectIndexYear,Mode=TwoWay}"></Picker>
+      </StackLayout>
+
+      <StackLayout Orientation="Horizontal">
+        <controls:CheckBox CheckedText="by Type" UncheckedText="by Type"></controls:CheckBox>
+        <Picker x:Name="PickerType" SelectedIndex="{Binding SelectIndexType,Mode=TwoWay}"></Picker>
+      </StackLayout>
+      
+    </StackLayout>
+    
 
     <ListView x:Name="listView" ItemsSource="{Binding Records}" ItemSelected="OnItemSelected" RowHeight="100">
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
             <StackLayout Padding="15,0,0,0" HorizontalOptions="StartAndExpand" Orientation="Horizontal" BackgroundColor="#FFFFFF" Spacing="15" VerticalOptions="FillAndExpand">
-              <Image Source="{Binding Image}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Image>
+              <!--<Image Source="{Binding Image}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Image>-->
+              <Label Text="{Binding Number}" Font="Bold" FontSize="40" VerticalTextAlignment="Center" TextColor="#6766DD"/>
               
               <StackLayout Padding="10,15,0,0" Orientation="Vertical">
                 <Label Text="{Binding Concat}" FontSize="20" VerticalTextAlignment="Center" TextColor="#000000"/>
