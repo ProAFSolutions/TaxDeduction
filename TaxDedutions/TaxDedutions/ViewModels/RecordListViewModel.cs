@@ -30,7 +30,7 @@ namespace TaxDedutions.ViewModels
         public RecordListViewModel()
         {
             IsBusy = true;
-            GetRecords();
+            GetAllRecords();
         }
 
         #endregion
@@ -85,7 +85,7 @@ namespace TaxDedutions.ViewModels
               () => new MemoryStream(Convert.FromBase64String(value)));
         }
 
-        public void GetRecords()
+        public void GetAllRecords()
         {
             db = new RecordDatabase();
             Records = db.GetRecords().ToList().Select(
@@ -109,6 +109,49 @@ namespace TaxDedutions.ViewModels
                 Records[i].Number = (i + 1).ToString();
                 if (Records[i].Number.Length == 1)
                     Records[i].Number = Records[i].Number + " ";
+            }
+
+            IsBusy = false;
+
+        }
+
+        public void GetRecordsByQuery(bool byDate, string date, bool byType, string type)
+        {
+            db = new RecordDatabase();
+            Records = db.GetRecords().ToList().Select(
+                x => new RecordItemList()
+                {
+                    Name = x.Name,
+                    Concat = x.Name + " (Amount: $" + x.Amount.ToString() + ")",
+                    Description = x.Description,
+                    Image = String64toImage(x.Image),
+                    ID = x.ID,
+                    Date = x.Date,
+                    Amount = x.Amount,
+                    Type = x.Type,
+                    HasImage = x.HasImage
+
+                }
+                ).ToList();
+
+            for (int i = 0; i < Records.Count(); i++)
+            {
+                Records[i].Number = (i + 1).ToString();
+                if (Records[i].Number.Length == 1)
+                    Records[i].Number = Records[i].Number + " ";
+            }
+
+            if(Records.Count()>0)
+            {
+                if (byDate)
+                {
+                    //Records = Records.Where(x=>x.)
+                }
+
+                if (byType)
+                {
+                    Records = Records.Where(x => x.Type == type).ToList();
+                }
             }
 
             IsBusy = false;

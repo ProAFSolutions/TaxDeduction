@@ -9,15 +9,26 @@
 
     <StackLayout HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
       <Label Text="Filters:" Font="Bold" FontSize="16" TextColor="White"/>
-      <StackLayout Orientation="Horizontal">
-        <controls:CheckBox CheckedText="by Date" UncheckedText="by Date"></controls:CheckBox>
-        <Picker x:Name="PickerYear" SelectedIndex="{Binding SelectIndexYear,Mode=TwoWay}"></Picker>
-      </StackLayout>
 
       <StackLayout Orientation="Horizontal">
-        <controls:CheckBox CheckedText="by Type" UncheckedText="by Type"></controls:CheckBox>
-        <Picker x:Name="PickerType" SelectedIndex="{Binding SelectIndexType,Mode=TwoWay}"></Picker>
+
+        <StackLayout Orientation="Vertical">
+          <StackLayout Orientation="Horizontal">
+            <controls:CheckBox x:Name="checkDate" CheckedText="by Date" UncheckedText="by Date"></controls:CheckBox>
+            <Picker x:Name="PickerYear" SelectedIndex="{Binding SelectIndexYear,Mode=TwoWay}"></Picker>
+          </StackLayout>
+
+          <StackLayout Orientation="Horizontal">
+            <controls:CheckBox x:Name="checkType" CheckedText="by Type" UncheckedText="by Type"></controls:CheckBox>
+            <Picker x:Name="PickerType" SelectedIndex="{Binding SelectIndexType,Mode=TwoWay}"></Picker>
+          </StackLayout>
+        </StackLayout>
+
+        <Button Text="Search" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Clicked="btnSearch_Clicked"></Button>
+        
       </StackLayout>
+      
+     
       
     </StackLayout>
     

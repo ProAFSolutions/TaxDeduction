@@ -18,13 +18,19 @@ namespace TaxDedutions.Views
             model.Navigation = Navigation;
             this.BindingContext = model;
 
-            this.PickerYear.Items.Add("2016");
-            this.PickerYear.Items.Add("2017");
+            int year = 2016;
+            int currentyear = DateTime.Now.Year;
+            do
+            {
+                this.PickerYear.Items.Add(year.ToString());
+                year++;
+            } while (year < currentyear);
+
             model.SelectIndexYear = 0;
 
             for (int i = 0; i < Constants.Deductions.Count(); i++)
             {
-                this.PickerYear.Items.Add(Constants.Deductions.ElementAt(i).Key);
+                this.PickerType.Items.Add(Constants.Deductions.ElementAt(i).Key);
             }
             model.SelectIndexType = 0;
 
@@ -41,8 +47,24 @@ namespace TaxDedutions.Views
 
         protected override void OnAppearing()
         {
+            GetRecords();
+        }
+
+        private void btnSearch_Clicked(object sender, EventArgs e)
+        {
+            GetRecords();
+        }
+
+        private void GetRecords()
+        {
             if (model != null)
-                model.GetRecords();
+                if (!checkDate.Checked && !checkType.Checked)
+                    model.GetAllRecords();
+                else
+                {
+                    model.GetRecordsByQuery(checkDate.Checked, this.PickerYear.Items[model.SelectIndexYear],
+                        checkType.Checked, this.PickerType.Items[model.SelectIndexType]);
+                }
         }
 
     }

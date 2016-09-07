@@ -19,15 +19,21 @@ namespace TaxDedutions.Droid
         {
             base.OnCreate(bundle);
 
+            try
+            {
+                #region Resolver Init
+                SimpleContainer container = new SimpleContainer();
+                container.Register<IDevice>(t => AndroidDevice.CurrentDevice);
+                container.Register<IDisplay>(t => t.Resolve<IDevice>().Display);
+                container.Register<INetwork>(t => t.Resolve<IDevice>().Network);
 
-            #region Resolver Init
-            SimpleContainer container = new SimpleContainer();
-            container.Register<IDevice>(t => AndroidDevice.CurrentDevice);
-            container.Register<IDisplay>(t => t.Resolve<IDevice>().Display);
-            container.Register<INetwork>(t => t.Resolve<IDevice>().Network);
-
-            Resolver.SetResolver(container.GetResolver());
-            #endregion
+                Resolver.SetResolver(container.GetResolver());
+                #endregion
+            }
+            catch (Exception ex)
+            {
+            }
+            
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
