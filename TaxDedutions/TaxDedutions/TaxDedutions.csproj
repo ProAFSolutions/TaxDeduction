@@ -38,6 +38,7 @@
     <Compile Include="App.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="DB\RecordDatabase.cs" />
+    <Compile Include="Models\Family.cs" />
     <Compile Include="Services\IImageResizer.cs" />
     <Compile Include="ViewModels\DeductionsExpensesListViewModel.cs" />
     <Compile Include="ViewModels\DetailViewModel.cs" />
@@ -49,6 +50,9 @@
       <DependentUpon>EntryRecord.xaml</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\ISQLite.cs" />
+    <Compile Include="Views\Family.xaml.cs">
+      <DependentUpon>Family.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -152,6 +156,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\TaxesDeductionsList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Family.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

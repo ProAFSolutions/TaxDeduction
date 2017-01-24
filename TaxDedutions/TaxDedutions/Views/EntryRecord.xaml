@@ -8,23 +8,23 @@
     <ScrollView>
       <StackLayout Padding="20">
 
-        <Label Text="Create Invoice" FontSize="35" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" TextColor="White"/>
+        <Label Text="Crear Factura" FontSize="35" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" TextColor="White"/>
 
-        <Label Text="Name" FontSize="20" TextColor="White"/>
+        <Label Text="Nombre" FontSize="20" TextColor="White"/>
         <Entry x:Name="Name" Placeholder="Enter Name" Text="{Binding Name}"></Entry>
-        <Label Text="Description" FontSize="20" TextColor="White"/>
+        <Label Text="Descripción" FontSize="20" TextColor="White"/>
         <Entry x:Name="Description" Placeholder="Enter Description"  Text="{Binding Description}"></Entry>
-        <Label Text="Type" FontSize="20" TextColor="White"/>
+        <Label Text="Tipo" FontSize="20" TextColor="White"/>
         <Picker x:Name="PickerType" SelectedIndex="{Binding SelectIndex,Mode=TwoWay}"></Picker>
-        <Label Text="Date" FontSize="20" TextColor="White"/>
+        <Label Text="Fecha" FontSize="20" TextColor="White"/>
         <DatePicker x:Name="Date"></DatePicker>
 
-        <Label Text="Amount" FontSize="20" TextColor="White"/>
+        <Label Text="Monto" FontSize="20" TextColor="White"/>
         <Entry x:Name="Amount" Placeholder="Enter Amount" Keyboard="Numeric"></Entry>
 
         <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
-          <Button Text="Take Picture"  BackgroundColor="#404040" TextColor="White" Command="{Binding TakePictureCommand}"/>
-          <Button Text="Select Picture"  BackgroundColor="#404040" TextColor="White" Command="{Binding SelectPictureCommand}"/>
+          <Button Text="Tomar Photo"  BackgroundColor="#404040" TextColor="White" Command="{Binding TakePictureCommand}"/>
+          <Button Text="Seleccionar Photo"  BackgroundColor="#404040" TextColor="White" Command="{Binding SelectPictureCommand}"/>
         </StackLayout>
 
         <Image x:Name="image" Source="{Binding Image}"></Image>
@@ -37,7 +37,7 @@
                                      ImageHeightRequest="72"
                                      ImageWidthRequest="72"
                                      Orientation="ImageToLeft"
-                                     Text="Save Invoice"
+                                     Text="Salvar Factura"
                                      TextColor="#ffffff"
                                      HorizontalOptions="FillAndExpand">
             <controls:ImageButton.Source>

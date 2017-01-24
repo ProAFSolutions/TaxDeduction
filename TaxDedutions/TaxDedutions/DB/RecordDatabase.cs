@@ -19,7 +19,10 @@ namespace TaxDedutions.DB
         {
             conn = DependencyService.Get<ISQLite>().GetConnection();
             conn.CreateTable<Record>();
+            conn.CreateTable<Family>();
         }
+
+        #region Record
 
         //READ  
         public IEnumerable<Record> GetRecords()
@@ -39,5 +42,24 @@ namespace TaxDedutions.DB
             conn.Delete<Record>(id);
             return "success";
         }
+
+        #endregion
+
+        #region Family
+
+        //READ  
+        public Family GetFamily()
+        {
+            var families = (from mem in conn.Table<Family>() select mem);
+            return families.ToList().FirstOrDefault();
+        }
+        //INSERT  
+        public string AddFamily(Family family)
+        {
+            conn.Insert(family);
+            return "success";
+        }
+
+        #endregion
     }
 }

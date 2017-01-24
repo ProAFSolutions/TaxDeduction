@@ -10,19 +10,19 @@
         
         <!--<Label Text="" FontSize="35" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" TextColor="White"/>-->
 
-        <Label Text="Name" FontSize="20" TextColor="White"/>
+        <Label Text="Nombre" FontSize="20" TextColor="White"/>
         <Entry x:Name="Name" Placeholder="Enter Name" Text="{Binding Record.Name}" IsEnabled="False"></Entry>
         
-        <Label Text="Description" FontSize="20" TextColor="White"/>
+        <Label Text="Descripción" FontSize="20" TextColor="White"/>
         <Entry Text="{Binding Record.Description}" IsEnabled="False"></Entry>
         
-        <Label Text="Type" FontSize="20" TextColor="White"/>
+        <Label Text="Tipo" FontSize="20" TextColor="White"/>
         <Entry Text="{Binding Record.Type}" IsEnabled="False"></Entry>
         
-        <Label Text="Date" FontSize="20" TextColor="White"/>
+        <Label Text="Fecha" FontSize="20" TextColor="White"/>
         <Entry Text="{Binding Record.Date}" IsEnabled="False"></Entry>
 
-        <Label Text="Amount" FontSize="20" TextColor="White"/>
+        <Label Text="Monto" FontSize="20" TextColor="White"/>
         <Entry  Text="{Binding Record.Amount}" IsEnabled="False">></Entry>
 
         <Image x:Name="image" Source="{Binding Record.Image}" IsVisible="{Binding Record.HasImage}"></Image>
@@ -34,7 +34,7 @@
                                      ImageHeightRequest="72"
                                      ImageWidthRequest="72"
                                      Orientation="ImageToLeft"
-                                     Text="Remove Invoice"
+                                     Text="Delete Factura"
                                      TextColor="#ffffff"
                                      HorizontalOptions="FillAndExpand">
             <controls:ImageButton.Source>

@@ -25,7 +25,8 @@ namespace TaxDedutions
                      }
                  }
              };*/
-            MainPage = new RootPage();
+            // MainPage = new RootPage();
+            MainPage = new Family();
 
         }
 

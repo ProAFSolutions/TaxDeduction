@@ -249,7 +249,7 @@ namespace TaxDedutions.ViewModels
 
                 var media = mediaPicker.TakePhotoAsync(new CameraMediaStorageOptions
                 {
-                    DefaultCamera = CameraDevice.Front,
+                    DefaultCamera = CameraDevice.Rear,
                     MaxPixelDimension = 400
                 }).ContinueWith(t => {
                     if (t.IsFaulted)
